@@ -1,7 +1,7 @@
 
 #Vue Mondiale
 
-```{r setup, include=FALSE}
+```{r}
 library(flexdashboard)
 library(tidyverse)
 library(readxl)

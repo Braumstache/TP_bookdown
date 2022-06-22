@@ -1,6 +1,0 @@
-vue-mondiale
-a-caucus-race-and-a-long-tale
-chart-production-par-année
-chart-population-par-année
-chart-energie-matiere
-chart-type-denergie
