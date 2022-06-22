@@ -1,8 +1,6 @@
-down-the-rabbit-hole
+vue-mondiale
 a-caucus-race-and-a-long-tale
-column
 chart-production-par-année
 chart-population-par-année
-column-1
 chart-energie-matiere
 chart-type-denergie

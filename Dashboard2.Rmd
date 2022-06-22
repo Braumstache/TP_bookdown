@@ -1,11 +1,11 @@
-
-#Vue Mondiale
+# Vue Continentale
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
 library(readxl)
 library(lubridate)
+library(countrycode)
 setwd("~/cours cefim/R_cours/TP")
 energy_main<-read_delim("owid-energy-data__OWID.csv")
 production_main<-read_delim("Production_Crops_Livestock_E_All_Data.csv")
@@ -40,15 +40,16 @@ energy_clean<-energy_main |>
   mutate(year=year(as.Date(year, format = "%Y"))) 
 
 #population  
-population_clean<-population_main |> 
+population_clean_cont<-population_main |> 
   pivot_longer(cols=8:78,
                names_to="annee",
                values_to = 'valeurs') |> 
-  filter(Type=="Country/Area") |> 
+  filter(Type=="Region") |> 
   filter(annee>=1960) |> 
   mutate(annee=year(as.Date(annee, format = "%Y"))) |> 
-  mutate(valeurs=as.double(valeurs)) |>
-  mutate(valeurs=valeurs*1000)
+  mutate(valeurs=as.double(valeurs)) |> 
+  mutate(valeurs=valeurs*1000) |> 
+  rename(name=3)
 
 #production
 production_F<-production_main |> 
@@ -70,25 +71,38 @@ production_clean<-production_F |>
   filter(grepl("Total",Item)) |> 
   mutate(Item=substr(Item,1,nchar(Item)-7)) |> 
   mutate(annee=year(as.Date(annee, format = "%Y")))
+
+
+codepays<-read_csv("code_pays.csv") 
+  
+production_cont<-production_clean |>
+ 
+  inner_join(codepays ,by=c("Area"="name")) |> 
+  group_by(annee,region)
+
+energy_cont<-energy_clean |> 
+  inner_join(codepays ,by=c("country"="name"))
+
+
 ```
 
-Chart production par année
+Chart production par année et par continent
 -----------------------------------------------------------------------
 
 
 
 ```{r}
-ggplot(production_clean)+
+ggplot(production_cont)+
   aes(annee,valeurs,fill=Item)+
+  facet_grid(~region)+
   geom_col()
 ```
 
-Chart population par année
+ Chart population par année et par continent
 
 ```{r}
-ggplot(population_clean )+
-  aes(annee,valeurs)+
-  
+ggplot(population_clean_cont)+
+  aes(annee,valeurs,fill=name)+
   geom_col()
 ```
 
@@ -98,15 +112,17 @@ Chart energie matiere
 
 
 ```{r}
-ggplot(energy_clean |> filter(type=="energie"))+
+ggplot(energy_cont |> filter(type=="energie"))+
   aes(year,consumption,fill=energy)+
+  facet_grid(~region)+
   geom_col()
 ```
 
 Chart type d'energie
 
 ```{r}
-ggplot(energy_clean |> filter(type=="type_energie"))+
+ggplot(energy_cont |> filter(type=="type_energie"))+
   aes(year,consumption,fill=energy)+
+  facet_grid(~region)+
   geom_col()
 ```
