@@ -5,4 +5,4 @@ edit: https://github.com/braumstache/TP_bookdown/edit/master/%s
 view: https://github.com/braumstache/TP_bookdown/blob/master/%s
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Chapter"

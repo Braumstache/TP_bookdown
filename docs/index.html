@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="next" href="vue-continentale.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,17 +136,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">TP Bookdown</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vue Mondiale</a></li>
-<li class="chapter" data-level="2" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>2</b> A caucus-race and a long tale</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Vue mondiale</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html#chart-production-par-année"><i class="fa fa-check"></i><b>2.1</b> ## Chart production par année</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html#chart-population-par-année"><i class="fa fa-check"></i><b>2.1.1</b> Chart population par année</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#chart-production-par-année"><i class="fa fa-check"></i><b>1.1</b> ##Chart production par année</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#chart-energie-matiere"><i class="fa fa-check"></i><b>1.2</b> ##Chart energie matiere</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html#chart-energie-matiere"><i class="fa fa-check"></i><b>2.2</b> ## Chart energie matiere</a>
+<li class="chapter" data-level="2" data-path="vue-continentale.html"><a href="vue-continentale.html"><i class="fa fa-check"></i><b>2</b> Vue Continentale</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html#chart-type-denergie"><i class="fa fa-check"></i><b>2.2.1</b> Chart type d’energie</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="vue-continentale.html"><a href="vue-continentale.html#chart-production-par-année-et-par-continent"><i class="fa fa-check"></i><b>2.1</b> ##Chart production par année et par continent</a></li>
+<li class="chapter" data-level="2.2" data-path="vue-continentale.html"><a href="vue-continentale.html#chart-energie-matiere-1"><i class="fa fa-check"></i><b>2.2</b> ##Chart energie matiere</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -173,8 +171,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date"><em>2022-06-22</em></p>
 </div>
 <div id="vue-mondiale" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Vue Mondiale<a href="index.html#vue-mondiale" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<h1><span class="header-section-number">Chapter 1</span> Vue mondiale<a href="index.html#vue-mondiale" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chart-production-par-année" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> ##Chart production par année<a href="index.html#chart-production-par-année" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(production_clean)<span class="sc">+</span></span>
+<span id="cb12-2"><a href="index.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(annee,valeurs,<span class="at">fill=</span>Item)<span class="sc">+</span></span>
+<span id="cb12-3"><a href="index.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 34284 rows containing missing values
+## (position_stack).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>##Chart population par année</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="index.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(population_clean )<span class="sc">+</span></span>
+<span id="cb14-2"><a href="index.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(annee,valeurs)<span class="sc">+</span></span>
+<span id="cb14-3"><a href="index.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-4"><a href="index.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="chart-energie-matiere" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> ##Chart energie matiere<a href="index.html#chart-energie-matiere" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="index.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(energy_clean <span class="sc">|&gt;</span> <span class="fu">filter</span>(type<span class="sc">==</span><span class="st">&quot;energie&quot;</span>))<span class="sc">+</span></span>
+<span id="cb15-2"><a href="index.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(year,consumption,<span class="at">fill=</span>energy)<span class="sc">+</span></span>
+<span id="cb15-3"><a href="index.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 50126 rows containing missing values
+## (position_stack).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>##Chart type d’energie</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="index.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(energy_clean <span class="sc">|&gt;</span> <span class="fu">filter</span>(type<span class="sc">==</span><span class="st">&quot;type_energie&quot;</span>))<span class="sc">+</span></span>
+<span id="cb17-2"><a href="index.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(year,consumption,<span class="at">fill=</span>energy)<span class="sc">+</span></span>
+<span id="cb17-3"><a href="index.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 38126 rows containing missing values
+## (position_stack).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
 </div>
             </section>
 
@@ -182,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vue-continentale.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

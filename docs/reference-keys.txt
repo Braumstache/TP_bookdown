@@ -1,0 +1,6 @@
+vue-mondiale
+chart-production-par-année
+chart-energie-matiere
+vue-continentale
+chart-production-par-année-et-par-continent
+chart-energie-matiere-1
