@@ -1,12 +1,5 @@
 
-
----
-title: "Vue mondiale"
-output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
----
+#Vue Mondiale
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
@@ -79,10 +72,10 @@ production_clean<-production_F |>
   mutate(annee=year(as.Date(annee, format = "%Y")))
 ```
 
-Column {data-width=500}
+## Chart production par année
 -----------------------------------------------------------------------
 
-### Chart production par année
+
 
 ```{r}
 ggplot(production_clean)+
@@ -99,10 +92,10 @@ ggplot(population_clean )+
   geom_col()
 ```
 
-Column {data-width=500}
+## Chart energie matiere
 -----------------------------------------------------------------------
 
-### Chart energie matiere
+
 
 ```{r}
 ggplot(energy_clean |> filter(type=="energie"))+
