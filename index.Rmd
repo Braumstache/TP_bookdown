@@ -138,7 +138,8 @@ production_clean<-production_F |>
   left_join(production_Y) |> 
   filter(grepl("Total",Item)) |> 
   mutate(Item=substr(Item,1,nchar(Item)-7)) |> 
-  mutate(annee=year(as.Date(annee, format = "%Y")))
+  mutate(annee=year(as.Date(annee, format = "%Y"))) |> 
+  filter(Element=="Production")
 
 
 codepays<-read_csv("code_pays.csv") 
@@ -169,7 +170,7 @@ ggplot(production_clean)+
   geom_col()
 ```
 
-##Chart population par année
+Chart population par année
 
 ```{r}
 ggplot(population_clean )+
@@ -189,7 +190,7 @@ ggplot(energy_clean |> filter(type=="energie"))+
   geom_col()
 ```
 
-##Chart type d'energie
+Chart type d'energie
 
 ```{r}
 ggplot(energy_clean |> filter(type=="type_energie"))+
@@ -213,7 +214,7 @@ ggplot(production_cont)+
   geom_col()
 ```
 
-##Chart population par année et par continent
+Chart population par année et par continent
 
 ```{r}
 ggplot(population_clean_cont)+
@@ -232,8 +233,7 @@ ggplot(energy_cont |> filter(type=="energie"))+
   facet_grid(~region)+
   geom_col()
 ```
-
-##Chart type d'energie
+Chart type d'energie
 
 ```{r}
 ggplot(energy_cont |> filter(type=="type_energie"))+
