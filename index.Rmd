@@ -12,7 +12,8 @@ library(readxl)
 library(lubridate)
 setwd("~/cours cefim/R_cours/TP/bookdown/TP_bookdown")
 energy_main<-read_delim("owid-energy-data__OWID.csv")
-production_main<-read_delim("Production_Crops_Livestock_E_All_Data.csv")
+production_main<-read_delim("Production_Crops_Livestock_E_All_Data.csv",
+                            locale=locale(encoding="ISO-8859-1"))
 population_main<-read_excel("WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES_UN.xlsx")
 
 #energy
@@ -154,6 +155,39 @@ energy_cont<-energy_clean |>
 
 
 ```
+```{r}
+library(countrycode)
+world_map <- map_data("world") |> 
+   mutate(iso_code = countrycode (region, origin = "country.name", destination = "iso3c")) 
+
+world_map<-world_map[,c("long","lat","region","group","iso_code")]
+
+
+popu_map<-population_clean |>
+  rename(name=3) |> 
+  mutate(iso_code = countrycode (name, origin = "country.name", destination = "iso3c")) |> 
+  mutate(name = countrycode(iso_code, origin = "iso3c", destination = "country.name")) |> 
+  inner_join(world_map,by=c("iso_code"="iso_code"))  |> 
+  filter(annee==2019)
+
+prod_inter <- production_clean |> 
+  filter(annee==2019) |> 
+  drop_na(valeurs) |> 
+  mutate(iso_code = countrycode (Area, origin = "country.name", destination = "iso3c")) |>
+  mutate(Area = countrycode(iso_code, origin = "iso3c", destination = "country.name")) |> 
+  drop_na(iso_code)
+
+
+prod_map<-prod_inter |>
+  full_join(world_map, by=c("iso_code"="iso_code")) |> 
+  drop_na(iso_code) 
+
+energie1_map<-energy_clean |>
+  filter(year==2019) |> 
+  mutate(iso_code = countrycode (country, origin = "country.name", destination = "iso3c")) |>
+  mutate(country = countrycode(iso_code, origin = "iso3c", destination = "country.name")) |> 
+  full_join(world_map)
+```
 
 
 
@@ -241,3 +275,42 @@ ggplot(energy_cont |> filter(type=="type_energie"))+
   facet_grid(~region)+
   geom_col()
 ```
+
+# map
+
+Population
+ 
+-----------------------------------------------------------------------
+
+ 
+```{r}
+ggplot(popu_map)+
+  aes(x=long,y=lat,group=group)+
+  geom_polygon(aes(fill=valeurs))
+  
+  
+  
+```
+
+Production
+-----------------------------------------------------------------------
+
+
+```{r}
+ggplot(prod_map)+
+  aes(x=long,y=lat,group=group)+
+  geom_polygon(aes(fill=valeurs),colour="black") 
+```
+
+
+
+Energie
+-----------------------------------------------------------------------
+
+
+```{r}
+ggplot(energie1_map)+
+  aes(x=long,y=lat,group=group)+
+  geom_polygon(aes(fill=consumption),colour="black")  
+```
+

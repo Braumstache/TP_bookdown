@@ -4,3 +4,10 @@ chart-energie-matiere
 vue-continentale
 chart-production-par-année-et-par-continent
 chart-energie-matiere-1
+map
+row
+population
+row-1
+production
+row-2
+energie
